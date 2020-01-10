@@ -19,6 +19,7 @@ public:
     ~RgbLed();
 public slots:
     void setColor(QColor color);
+    void statusColor(bool sign);
 protected:
     void resizeEvent(QResizeEvent *event);
     void paintEvent(QPaintEvent *event);

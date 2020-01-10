@@ -1,13 +1,13 @@
 /*!
-    @class SettingsPortDialog
+    @class PortSettingsDialog
     @brief класс создает виджет окна
     с параметрами и информацией COM-порта.
     Класс позваляет задавать настройки порта.
     @author Щербаков Александр
     @date 13.09.2018
 */
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#ifndef SETTINGSPORTDIALOG_H
+#define SETTINGSPORTDIALOG_H
 
 #include <QWidget>
 #include <QDialog>
@@ -15,9 +15,9 @@
 #include <QtSerialPort/QtSerialPort>
 
 namespace Ui {
-class SettingsPortDialog;
+class PortSettingsDialog;
 }
-class SettingsPortDialog : public QWidget
+class PortSettingsDialog : public QWidget
 {
     Q_OBJECT
 
@@ -46,8 +46,8 @@ public:
             bool localEchoEnabled;
         };
 
-    explicit SettingsPortDialog(QWidget *parent = nullptr,int id=0);///<конструктор класса
-    ~SettingsPortDialog();///<деструктор класса
+    explicit PortSettingsDialog(QWidget *parent = nullptr,int id=0);///<конструктор класса
+    ~PortSettingsDialog();///<деструктор класса
 
     Settings settings()const;///<объект настроек порта
 protected:
@@ -81,7 +81,7 @@ private:
     void readSettings();
     void writeSettings();
 private:
-    Ui::SettingsPortDialog *ui;
+    Ui::PortSettingsDialog *ui;
     Settings currentSettings;
     QIntValidator *intValidator;
     int idNum;

@@ -13,7 +13,7 @@
 comPort::comPort(QObject *parent) :
     QObject(parent)
 {
-
+    isConnectPort=false;
 }
 //-----------------------------------------------------------
 // Назначение: конструктор класса
@@ -69,12 +69,14 @@ void comPort::ConnectPort(QString name, int baudrate, int DataBits,
                                 .arg(name).arg(baudrate)
                                 .arg(DataBits).arg(Parity)
                                 .arg(StopBits).arg(FlowControl));
+                isConnectPort=true;
             }
             else
             {
                 thisPort.close();
                 error_(thisPort.errorString().toLocal8Bit());
                 isNotConnectedPort(tr("Невозможно открыть порт %1").arg(name));
+                isConnectPort=false;
             }
         }
     }
@@ -83,6 +85,7 @@ void comPort::ConnectPort(QString name, int baudrate, int DataBits,
         thisPort.close();
         error_(thisPort.errorString().toLocal8Bit());
         isNotConnectedPort(tr("Ошибка открытия порта"));
+        isConnectPort=false;
     }
 }
 //-----------------------------------------------------------
@@ -95,6 +98,7 @@ bool comPort::DisconnectPort()
     {
         thisPort.close();
         isNotConnectedPort(tr("%1 закрыт").arg(thisPort.portName()));
+        isConnectPort=false;
         return true;
     }
     else return false;
@@ -111,6 +115,11 @@ void comPort::handleError(QSerialPort::SerialPortError error)
         error_(thisPort.errorString().toLocal8Bit());
         DisconnectPort();
     }
+}
+
+bool comPort::getIsConnectPort() const
+{
+    return isConnectPort;
 }
 
 //-----------------------------------------------------------

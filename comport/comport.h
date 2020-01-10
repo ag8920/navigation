@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
-#include <comport/settingsdialog/settingsdialog.h>
+#include "comport/portsettings/settingsportdialog.h"
 
 ///Структура основных параметров COM-порта
 struct SettingsComPort{
@@ -31,6 +31,8 @@ public:
 
     QSerialPort thisPort;///<объект класса последовательного COM-порта
     SettingsComPort SettingsPort;///<объект настроект COM-порта
+
+    bool getIsConnectPort() const;
 
 signals:
     void isConnectedPort(const QString &msg); ///<сигнал успешного подключения порта
@@ -76,6 +78,8 @@ public slots:
     QByteArray writeAndRead(const QByteArray &data);
 private slots:
     void handleError(QSerialPort::SerialPortError error);///<обработка ошибок
+private:
+    bool isConnectPort;
 };
 
 #endif // COMPORT_H

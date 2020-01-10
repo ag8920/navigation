@@ -1,0 +1,24 @@
+#include "tablemodel.h"
+
+TableModel::TableModel(QObject *parent) : QObject(parent)
+{
+    mainForm=new TableForm;
+    settingsForm=new PortSettingsDialog;
+    presenterTable=new controlTableGRBL;
+    
+    createConnect();
+}
+
+void TableModel::createConnect()
+{
+    connect(mainForm, &TableForm::openSettings,settingsForm,
+            &PortSettingsDialog::showWidget);
+    connect(settingsForm, &PortSettingsDialog::isUpdateSettings,
+            this, &TableModel::openPort);
+}
+
+void TableModel::openPort()
+{
+    
+}
+

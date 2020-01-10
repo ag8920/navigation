@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>813</width>
+    <height>624</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <weight>50</weight>
+    <bold>false</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Navigation</string>
+  </property>
+  <property name="documentMode">
+   <bool>true</bool>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::VerticalTabs</set>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="tabsClosable">
+       <bool>false</bool>
+      </property>
+      <property name="movable">
+       <bool>false</bool>
+      </property>
+      <property name="tabBarAutoHide">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Навигация</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_15"/>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QGroupBox" name="groupBox_4">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="inputMethodHints">
+             <set>Qt::ImhUrlCharactersOnly</set>
+            </property>
+            <property name="title">
+             <string>Heading</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_12">
+             <property name="leftMargin">
+              <number>9</number>
+             </property>
+             <item row="0" column="1">
+              <layout class="QFormLayout" name="formLayoutHeading">
+               <property name="labelAlignment">
+                <set>Qt::AlignHCenter|Qt::AlignTop</set>
+               </property>
+               <property name="formAlignment">
+                <set>Qt::AlignHCenter|Qt::AlignTop</set>
+               </property>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QGroupBox" name="groupBox_3">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="title">
+             <string>Status</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_11">
+             <item row="0" column="1">
+              <layout class="QFormLayout" name="formLayoutCorr"/>
+             </item>
+             <item row="0" column="0">
+              <layout class="QFormLayout" name="formLayoutStatus"/>
+             </item>
+             <item row="1" column="0" colspan="2">
+              <layout class="QFormLayout" name="formLayoutMode"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QGroupBox" name="groupBox_6">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="title">
+             <string>Speed</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_14">
+             <item row="0" column="0">
+              <layout class="QFormLayout" name="formLayoutSpeed">
+               <property name="labelAlignment">
+                <set>Qt::AlignHCenter|Qt::AlignTop</set>
+               </property>
+               <property name="formAlignment">
+                <set>Qt::AlignHCenter|Qt::AlignTop</set>
+               </property>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QGroupBox" name="groupBox_5">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="mouseTracking">
+             <bool>false</bool>
+            </property>
+            <property name="title">
+             <string>Angle</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_13">
+             <item row="0" column="0">
+              <layout class="QFormLayout" name="formLayoutRollPitch">
+               <property name="sizeConstraint">
+                <enum>QLayout::SetDefaultConstraint</enum>
+               </property>
+               <property name="rowWrapPolicy">
+                <enum>QFormLayout::DontWrapRows</enum>
+               </property>
+               <property name="labelAlignment">
+                <set>Qt::AlignHCenter|Qt::AlignTop</set>
+               </property>
+               <property name="formAlignment">
+                <set>Qt::AlignHCenter|Qt::AlignTop</set>
+               </property>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QGroupBox" name="groupBox">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="title">
+             <string>Location</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="flat">
+             <bool>false</bool>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_8">
+             <item row="0" column="2">
+              <layout class="QFormLayout" name="formLayoutSnsLocation"/>
+             </item>
+             <item row="0" column="1">
+              <layout class="QFormLayout" name="formLayoutLocation"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QGroupBox" name="groupBox_2">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="title">
+             <string>Time</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="0" column="0">
+              <layout class="QFormLayout" name="formLayoutTime"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>БИНС</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="tableWidgetBins">
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>7</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <row>
+           <property name="text">
+            <string>счетчик</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>режим</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>сист.время</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>Tunix</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>время дня</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>день</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>месяц</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>год</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>dUT</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>широта</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>долгота</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>высота</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>вост.скор.</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>сев.скор.</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>верт.скор.</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>ист.курс</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>крен</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>тангаж</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>dVx</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>dVy</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>dVz</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>dWx</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>dWy</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>dWz</string>
+           </property>
+          </row>
+          <column>
+           <property name="text">
+            <string>Значение</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>СНС</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="tableWidgetSNS">
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderStretchLastSection">
+           <bool>false</bool>
+          </attribute>
+          <row>
+           <property name="text">
+            <string>статус</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>широта</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>долгота</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>высота</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>вост.скор.</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>сев.скор.</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>верт.скор.</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>Tgps</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>номер недели</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>СКО</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>GPS спутники</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>VDOP</string>
+           </property>
+          </row>
+          <column>
+           <property name="text">
+            <string>Значение</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>8</pointsize>
+            </font>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>БОКЗ</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="tableWidgetBOKZ">
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <row>
+           <property name="text">
+            <string>статус</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>время измерения</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>М[0][0]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>M[0][1]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>M[0][2]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>M[1][0]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>M[1][1]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>M[1][2]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>M[2][0]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>M[2][1]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>M[2][2]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>DE[0]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>DE[1]</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>корр.1рода</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>корр.2рода</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>корр.3рода</string>
+           </property>
+          </row>
+          <column>
+           <property name="text">
+            <string>Значение</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>СД</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="tableWidgetSD">
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <row>
+           <property name="text">
+            <string>статус</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>время измерения</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>L</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>M</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>N</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>DE</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>корр.по СД</string>
+           </property>
+          </row>
+          <column>
+           <property name="text">
+            <string>Значение</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>813</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Инструменты</string>
+    </property>
+    <addaction name="actionSettingsPort"/>
+    <addaction name="actionConnect"/>
+    <addaction name="separator"/>
+    <addaction name="actionOutpack"/>
+    <addaction name="actionREC"/>
+    <addaction name="actionControlTable"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonFollowStyle</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>RightToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionSettingsPort"/>
+   <addaction name="actionConnect"/>
+   <addaction name="actionOutpack"/>
+   <addaction name="actionREC"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionSettingsPort">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icons/icons/settings2.png</normaloff>:/icons/icons/settings2.png</iconset>
+   </property>
+   <property name="text">
+    <string>Настройка связи</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icons/icons/disconnect.png</normaloff>:/icons/icons/disconnect.png</iconset>
+   </property>
+   <property name="text">
+    <string>Подключить</string>
+   </property>
+  </action>
+  <action name="actionREC">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icons/icons/rec_gray.png</normaloff>
+     <normalon>:/icons/icons/rec_gray.png</normalon>:/icons/icons/rec_gray.png</iconset>
+   </property>
+   <property name="text">
+    <string>Начать запись</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::ApplicationSpecificRole</enum>
+   </property>
+  </action>
+  <action name="actionOutpack">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icons/icons/send.png</normaloff>:/icons/icons/send.png</iconset>
+   </property>
+   <property name="text">
+    <string>отправить пакет</string>
+   </property>
+  </action>
+  <action name="actionControlTable">
+   <property name="text">
+    <string>управление пов.столом</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

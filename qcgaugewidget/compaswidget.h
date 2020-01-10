@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "qcgaugewidget.h"
-class compasWidget : public QWidget
+class compasWidget : public QcGaugeWidget
 {
     Q_OBJECT
 public:
@@ -14,7 +14,6 @@ signals:
 public slots:
     void setValue(float value);
 private:
-    QcGaugeWidget * mCompassGauge;
     QcNeedleItem *mCompassNeedle;
 };
 

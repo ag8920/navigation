@@ -44,6 +44,12 @@ void RgbLed::setColor(QColor color)
 
 }
 
+void RgbLed::statusColor(bool sign)
+{
+    if(sign==true) setColor(Qt::green);
+    else setColor(Qt::red);
+}
+
 void RgbLed::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);

@@ -1,38 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>outDialog</class>
- <widget name="outDialog" class="QDialog">
+ <widget class="QDialog" name="outDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>510</width>
+    <height>284</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>510</width>
+    <height>284</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget name="buttonBox" class="QDialogButtonBox">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>240</y>
-     <width>341</width>
-     <height>32</height>
-    </rect>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetFixedSize</enum>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Параметры</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Количество снимков</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEditShots">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Широта места объекта</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEditLat"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Долгота места объекта</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEditLon"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Высота места объекта</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEditH"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>ист.курс объекта</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="lineEditTHdg"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Командное слово</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QComboBox" name="comboBoxMode">
+        <item>
+         <property name="text">
+          <string>Ожидание</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выставка ГК</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выставка ЗК</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выставка по БОКЗ</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выставка по СНС</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Тест-контроль</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxSNScor">
+        <property name="text">
+         <string>Коррекция по СНС</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxBOKZcor">
+        <property name="text">
+         <string>Коррекция по ЗД</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxSDcor">
+        <property name="text">
+         <string>Коррекция по СД</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxTOBokz">
+        <property name="text">
+         <string>Разрешить ТО БОКЗ</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxPosval">
+        <property name="text">
+         <string>Достоверность координат</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxThdval">
+        <property name="text">
+         <string>Достоверность курса</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <pixmapfunction/>
+ <tabstops>
+  <tabstop>lineEditShots</tabstop>
+  <tabstop>lineEditLat</tabstop>
+  <tabstop>lineEditLon</tabstop>
+  <tabstop>lineEditH</tabstop>
+  <tabstop>lineEditTHdg</tabstop>
+  <tabstop>comboBoxMode</tabstop>
+  <tabstop>checkBoxSNScor</tabstop>
+  <tabstop>checkBoxBOKZcor</tabstop>
+  <tabstop>checkBoxSDcor</tabstop>
+  <tabstop>checkBoxTOBokz</tabstop>
+  <tabstop>checkBoxPosval</tabstop>
+  <tabstop>checkBoxThdval</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -42,8 +206,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>500</x>
+     <y>274</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>

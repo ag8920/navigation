@@ -394,7 +394,7 @@ QcLabelItem::QcLabelItem(QObject *parent) :
     setPosition(50);
     mAngle = 270;
     mText = "%";
-    mColor = Qt::black;
+    mColor = Qt::gray;
 }
 
 void QcLabelItem::draw(QPainter *painter)
@@ -458,7 +458,7 @@ QcArcItem::QcArcItem(QObject *parent) :
     QcScaleItem(parent)
 {
     setPosition(80);
-    mColor = Qt::black;
+    mColor = Qt::gray;
 }
 
 void QcArcItem::draw(QPainter *painter)
@@ -550,7 +550,7 @@ QcDegreesItem::QcDegreesItem(QObject *parent) :
     QcScaleItem(parent)
 {
     mStep = 10;
-    mColor = Qt::black;
+    mColor = Qt::gray;
     mSubDegree = false;
     setPosition(90);
 }
@@ -644,8 +644,8 @@ void QcNeedleItem::draw(QPainter *painter)
         createCompassNeedle(getRadius(tmpRect));
         grad.setStart(mNeedlePoly[0]);
         grad.setFinalStop(mNeedlePoly[1]);
-        grad.setColorAt(0.9,Qt::red);
-        grad.setColorAt(1,Qt::white);
+        grad.setColorAt(0.9,Qt::darkBlue);
+        grad.setColorAt(1,Qt::darkRed);
         painter->setBrush(grad);
 
         break;
@@ -667,7 +667,7 @@ void QcNeedleItem::setCurrentValue(float value)
         mCurrentValue = value;
 
     if(mLabel!=0)
-        mLabel->setText(QString::number(mCurrentValue),false);
+        mLabel->setText(QString::number(mCurrentValue,'g',1),false);
 
 /// This pull request is not working properly
 //    if(mLabel!=0){
@@ -780,7 +780,7 @@ QcValuesItem::QcValuesItem(QObject *parent) :
     QcScaleItem(parent)
 {
     setPosition(70);
-    mColor = Qt::black;
+    mColor = Qt::gray;
     mStep = 10;
 }
 
@@ -906,7 +906,7 @@ void QcAttitudeMeter::drawDegrees(QPainter *painter)
     float r = getRadius(tmpRect);
     QPen pen;
 
-    pen.setColor(Qt::white);
+    pen.setColor(Qt::gray);
     painter->setPen(pen);
     for(int deg = 60;deg<=120;deg+=10){
         if(deg == 90)
@@ -940,7 +940,7 @@ void QcAttitudeMeter::drawUpperEllipse(QPainter *painter, const QRectF &tmpRect)
 {
 
     QLinearGradient radialGrad1(tmpRect.topLeft(),tmpRect.bottomRight());
-    QColor clr1 = Qt::blue;
+    QColor clr1 = Qt::darkGray;
     clr1.setAlphaF(0.5);
     QColor clr2 = Qt::darkBlue;
     clr2.setAlphaF(0.5);
@@ -962,8 +962,8 @@ void QcAttitudeMeter::drawUpperEllipse(QPainter *painter, const QRectF &tmpRect)
 void QcAttitudeMeter::drawLowerEllipse(QPainter *painter, const QRectF &tmpRect)
 {
     QLinearGradient radialGrad2(tmpRect.topLeft(),tmpRect.bottomRight());
-    QColor clr1 = QColor(139,119,118);
-    QColor clr2 = QColor(139,119,101);
+    QColor clr1 =Qt::darkGray; //QColor(139,119,118);
+    QColor clr2 =Qt::darkGray; //QColor(139,119,101);
     radialGrad2.setColorAt(0, clr1);
     radialGrad2.setColorAt(.8, clr2);
 
@@ -1021,11 +1021,13 @@ void QcAttitudeMeter::drawPitchSteps(QPainter *painter, const QRectF &tmpRect)
 
 void QcAttitudeMeter::drawHandle(QPainter *painter)
 {
+    QColor color("#E55137");
     QRectF tmpRct = adjustRect(15);
     float r = getRadius(tmpRct);
     QPen pen;
-    pen.setColor(Qt::gray);
-    pen.setWidthF(0.25*r);
+    pen.setColor(color);
+    pen.setWidthF(0.3*r);
+    pen.setCapStyle(Qt::RoundCap);
     painter->setPen(pen);
     painter->drawArc(tmpRct,0,-16*180);
 
@@ -1043,31 +1045,31 @@ void QcAttitudeMeter::drawHandle(QPainter *painter)
     painter->drawEllipse(adjustRect(2));
 
     //
-    QPointF pt1 = center;
-    QPointF pt2 = center;
-    // to get the real 100 % radius, without recomputing
-    pt1.setY(center.y()+r);
-    pt2.setY(center.y()+4*r);
-    pen.setColor(Qt::gray);
-    painter->setPen(pen);
-    painter->drawLine(pt1,pt2);
+//    QPointF pt1 = center;
+//    QPointF pt2 = center;
+//    // to get the real 100 % radius, without recomputing
+//    pt1.setY(center.y()+r);
+//    pt2.setY(center.y()+4*r);
+//    pen.setColor(color);
+//    painter->setPen(pen);
+//    painter->drawLine(pt1,pt2);
 
     // trapezium
-    painter->setPen(Qt::gray);
-    painter->setBrush(Qt::gray);
-    QPolygonF trapPoly;
-    QPointF tmpPt = center;
-    tmpPt.setX(center.x()-r);
-    tmpPt.setY(center.y()+4*r);
-    trapPoly.append(tmpPt);
-    tmpRct = adjustRect(position());
-    trapPoly.append(getPoint(290,tmpRct));
-    trapPoly.append(getPoint(250,tmpRct));
-    tmpPt = center;
-    tmpPt.setX(center.x()+r);
-    tmpPt.setY(center.y()+4*r);
-    trapPoly.append(tmpPt);
-    painter->drawPolygon(trapPoly);
-    painter->drawChord(tmpRct,-16*70,-16*40);
+//    painter->setPen(color);
+//    painter->setBrush(color);
+//    QPolygonF trapPoly;
+//    QPointF tmpPt = center;
+//    tmpPt.setX(center.x()-r);
+//    tmpPt.setY(center.y()+4*r);
+//    trapPoly.append(tmpPt);
+//    tmpRct = adjustRect(position());
+//    trapPoly.append(getPoint(290,tmpRct));
+//    trapPoly.append(getPoint(250,tmpRct));
+//    tmpPt = center;
+//    tmpPt.setX(center.x()+r);
+//    tmpPt.setY(center.y()+4*r);
+//    trapPoly.append(tmpPt);
+//    painter->drawPolygon(trapPoly);
+//    painter->drawChord(tmpRct,-16*70,-16*40);
 }
 

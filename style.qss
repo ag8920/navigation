@@ -658,11 +658,15 @@ QAbstractSpinBox::down-arrow:hover {
     image: url(:rc/down_arrow.png);
 }
 
+
 QLabel {
-    border: 0px solid black;
-    font:11px
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    font:14px;
+
 
 }
+
 
 QTabWidget {
     border: 0px transparent black;
@@ -1029,6 +1033,7 @@ QToolButton::menu-button:hover {
     padding: 5px;
 }
 
+/*
 QToolButton:checked,
 QToolButton:pressed,
 QToolButton::menu-button:pressed {
@@ -1036,7 +1041,7 @@ QToolButton::menu-button:pressed {
     border: 1px solid #3daee9;
     padding: 5px;
 }
-
+*/
 
 /* the subcontrol below is used only in the InstantPopup or DelayedPopup mode */
 

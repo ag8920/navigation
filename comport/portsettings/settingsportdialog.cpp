@@ -24,9 +24,9 @@ static const QString noBusy = QObject::tr("Свободен");
 //-----------------------------------------------------------
 // Назначение: консруктор класса
 //-----------------------------------------------------------
-SettingsPortDialog::SettingsPortDialog(QWidget *parent, int id) :
+PortSettingsDialog::PortSettingsDialog(QWidget *parent, int id) :
     QWidget(parent),
-    ui(new Ui::SettingsPortDialog)
+    ui(new Ui::PortSettingsDialog)
 {
     ui->setupUi(this);
     idNum=id;
@@ -50,7 +50,7 @@ SettingsPortDialog::SettingsPortDialog(QWidget *parent, int id) :
     updateSettings();
 
 }
-void SettingsPortDialog::closeEvent(QCloseEvent *event)
+void PortSettingsDialog::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
     writeSettings();
@@ -59,22 +59,22 @@ void SettingsPortDialog::closeEvent(QCloseEvent *event)
 //-----------------------------------------------------------
 // Назначение: деструктор класса
 //-----------------------------------------------------------
-SettingsPortDialog::~SettingsPortDialog()
+PortSettingsDialog::~PortSettingsDialog()
 {
-    qDebug("SettingsPortDialog::~SettingsPortDialog()");
+    qDebug("PortSettingsDialog::~PortSettingsDialog()");
     delete ui;
 }
 //-----------------------------------------------------------
 // Назначение: возвращает текущие настройки
 //-----------------------------------------------------------
-SettingsPortDialog::Settings SettingsPortDialog::settings() const
+PortSettingsDialog::Settings PortSettingsDialog::settings() const
 {
     return currentSettings;
 }
 //-----------------------------------------------------------
 // Назначение: отображение информации о COM порте
 //-----------------------------------------------------------
-void SettingsPortDialog::showPortInfo(int idx)
+void PortSettingsDialog::showPortInfo(int idx)
 {
     if (idx != -1) {
         QStringList list = ui->serialPortInfoBox->itemData(idx).toStringList();
@@ -94,7 +94,7 @@ void SettingsPortDialog::showPortInfo(int idx)
 //-----------------------------------------------------------
 // Назначение: действие по кнопке Apply
 //-----------------------------------------------------------
-void SettingsPortDialog::apply()
+void PortSettingsDialog::apply()
 {
     writeSettings();
     updateSettings();
@@ -104,7 +104,7 @@ void SettingsPortDialog::apply()
 //-----------------------------------------------------------
 // Назначение: установка нестандартных скоротей COM порта
 //-----------------------------------------------------------
-void SettingsPortDialog::checkCustomBaudRatePolicy(int idx)
+void PortSettingsDialog::checkCustomBaudRatePolicy(int idx)
 {
     bool isCustomBaudRate = !ui->baudRateBox->itemData(idx).isValid();
     ui->baudRateBox->setEditable(isCustomBaudRate);
@@ -123,7 +123,7 @@ void SettingsPortDialog::checkCustomBaudRatePolicy(int idx)
 //-----------------------------------------------------------
 // Назначение: отображение настраиваемых параметров COM
 //-----------------------------------------------------------
-void SettingsPortDialog::fillPortsParameters()
+void PortSettingsDialog::fillPortsParameters()
 {
     ui->baudRateBox->addItem(QStringLiteral("1200"), QSerialPort::Baud1200);
     ui->baudRateBox->addItem(QStringLiteral("2400"), QSerialPort::Baud2400);
@@ -161,7 +161,7 @@ void SettingsPortDialog::fillPortsParameters()
 //-----------------------------------------------------------
 // Назначение: отображение информации о COM порте
 //-----------------------------------------------------------
-void SettingsPortDialog::fillPortsInfo()
+void PortSettingsDialog::fillPortsInfo()
 {
     ui->serialPortInfoBox->clear();
     static const QString blankString = QObject::tr("N/A");
@@ -191,7 +191,7 @@ void SettingsPortDialog::fillPortsInfo()
     }
 }
 
-void SettingsPortDialog::showWidget()
+void PortSettingsDialog::showWidget()
 {
     qDebug()<<"showWidget";
     qApp->processEvents();
@@ -203,7 +203,7 @@ void SettingsPortDialog::showWidget()
 //-----------------------------------------------------------
 // Назначение: обновление(запись) текущих настроек
 //-----------------------------------------------------------
-void SettingsPortDialog::updateSettings()
+void PortSettingsDialog::updateSettings()
 {
     currentSettings.name = ui->serialPortInfoBox->currentText();
 
@@ -234,7 +234,7 @@ void SettingsPortDialog::updateSettings()
     currentSettings.localEchoEnabled = ui->localEchoCheckBox->isChecked();
 }
 
-void SettingsPortDialog::readSettings()
+void PortSettingsDialog::readSettings()
 {
     QSettings settings("settings.ini",QSettings::IniFormat);
     settings.beginGroup("ComPort_"+QString::number(idNum));
@@ -243,7 +243,7 @@ void SettingsPortDialog::readSettings()
 
 }
 
-void SettingsPortDialog::writeSettings()
+void PortSettingsDialog::writeSettings()
 {
 
     QSettings settings("settings.ini",QSettings::IniFormat);
