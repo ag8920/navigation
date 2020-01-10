@@ -45,6 +45,7 @@ bool controlTableGRBL::ConnectPort(QString name, int baudrate, int DataBits, int
 {
     port->ConnectPort(name,baudrate,DataBits,Parity,StopBits,FlowControl);
     connectPort=port->getIsConnectPort();
+    emit portConnected(connectPort);
     return connectPort;
 }
 
@@ -53,6 +54,7 @@ bool controlTableGRBL::DisconnectPort()
 
     port->DisconnectPort();
     connectPort=port->getIsConnectPort();
+    emit portConnected(connectPort);
     return connectPort;
 }
 

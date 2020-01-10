@@ -7,6 +7,7 @@ class controlTableGRBL:public QObject
     Q_OBJECT
 signals:
     void signalSendCommand(const QByteArray &cmd);
+    void portConnected(bool);
 public:
     explicit controlTableGRBL(QObject *parent=nullptr);
     ~controlTableGRBL();

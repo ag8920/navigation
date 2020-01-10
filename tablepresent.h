@@ -16,15 +16,13 @@ signals:
 
 private:
     TableForm *mainForm;
-    PortSettingsDialog *settingsForm;
     controlTableGRBL *modelTable;
 
 private:
-    void createConnect();
-    void openPort();
-    void closePort();
+    void createConnect();    
 public slots:
     void showWgt();
+    void ConnectedPort(bool arg1);
 
 private:
     bool tableConnect;

@@ -39,9 +39,56 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout"/>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>Настройка COM-порта</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QComboBox" name="serialPortInfoBox"/>
+      </item>
+      <item>
+       <widget class="QComboBox" name="baudRateBox"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="ButtonUpdateInfo">
+        <property name="text">
+         <string>Обновить</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons/Refresh.png</normaloff>icons/Refresh.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="ButtonConnect">
+        <property name="text">
+         <string>Подключить</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons/disconnect.png</normaloff>icons/disconnect.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
    </item>
-   <item row="1" column="0" colspan="2">
+   <item row="1" column="0">
     <layout class="QGridLayout" name="gridLayout_6">
      <item row="2" column="0">
       <widget class="QRadioButton" name="radioButton">
@@ -194,7 +241,7 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="1">
+   <item row="2" column="0">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -210,13 +257,13 @@
      </property>
     </spacer>
    </item>
-   <item row="3" column="0" colspan="2">
+   <item row="3" column="0">
     <layout class="QGridLayout" name="gridLayout_3">
      <property name="sizeConstraint">
       <enum>QLayout::SetMaximumSize</enum>
      </property>
      <item row="0" column="1">
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushButtonUp">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -242,7 +289,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="pushButtonDown">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -265,7 +312,7 @@
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="pushButtonRight">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -294,7 +341,7 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButtonLeft">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -330,8 +377,8 @@
   <tabstop>comboBox</tabstop>
   <tabstop>radioButton</tabstop>
   <tabstop>radioButton_2</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>pushButton_4</tabstop>
+  <tabstop>pushButtonUp</tabstop>
+  <tabstop>pushButtonDown</tabstop>
  </tabstops>
  <resources>
   <include location="resource.qrc"/>

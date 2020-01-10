@@ -2,8 +2,7 @@
 
 TablePreseneter::TablePreseneter(QObject *parent) : QObject(parent)
 {
-    mainForm=new TableForm;
-    settingsForm=new PortSettingsDialog;
+    mainForm=new TableForm;    
     modelTable=new controlTableGRBL;
 
     createConnect();
@@ -11,43 +10,24 @@ TablePreseneter::TablePreseneter(QObject *parent) : QObject(parent)
 
 void TablePreseneter::createConnect()
 {
-    connect(mainForm, &TableForm::openSettings,settingsForm,
-            &PortSettingsDialog::showWidget);
-    connect(mainForm, &TableForm::disconnectPort,this,
-            &TablePreseneter::closePort);
-    connect(settingsForm, &PortSettingsDialog::isUpdateSettings,
-            this, &TablePreseneter::openPort);    
+     connect(mainForm, &TableForm::ConnectPort,
+            modelTable, &controlTableGRBL::ConnectPort);
+     connect(mainForm, &TableForm::disconnectPort,
+             modelTable, &controlTableGRBL::DisconnectPort);
+     connect(modelTable, &controlTableGRBL::portConnected,
+             this, &TablePreseneter::ConnectedPort);
+     connect(modelTable, &controlTableGRBL::portConnected,
+             mainForm, &TableForm::ConnectedPort);
 }
 
-void TablePreseneter::openPort()
-{
-    PortSettingsDialog::Settings p=settingsForm->settings();
-    QString name=static_cast<QString>(p.name);
-    int baudRate=static_cast<int>(p.baudRate);
-    int dataBits=static_cast<int>(p.dataBits);
-    int parity=static_cast<int>(p.parity);
-    int stopBits=static_cast<int>(p.stopBits);
-    int flowControl=static_cast<int>(p.flowControl);
-
-    tableConnect=modelTable->ConnectPort(name,baudRate,dataBits,
-                     parity,stopBits,flowControl);
-    if(tableConnect)
-    {
-
-    }
-}
-
-void TablePreseneter::closePort()
-{
-    tableConnect=modelTable->DisconnectPort();
-    if(!tableConnect)
-    {
-
-    }
-}
 
 void TablePreseneter::showWgt()
 {
     mainForm->show();
+}
+
+void TablePreseneter::ConnectedPort(bool arg1)
+{
+    tableConnect=arg1;
 }
 

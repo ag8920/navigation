@@ -18,14 +18,25 @@ public:
     ~TableForm();
 
 signals:
-    void openSettings();
     void disconnectPort();
+    void ConnectPort(QString name, int baudrate, int DataBits,int Parity,
+                     int StropBits,int FlowConrol);
+
 private slots:
+    void fillPortsInfo();
+    void checkCustomBaudRatePolicy(int idx);
+
 public slots:
+    void clickedConnectButton();
+    void ConnectedPort(bool arg1);
 
 private:
     Ui::TableForm *ui;
     QStatusBar *statusBar;
+
+    void fillBaudRateParametres();
+    bool isConnectPort;
+
 
 };
 
