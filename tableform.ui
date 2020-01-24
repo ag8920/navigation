@@ -128,14 +128,14 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="lineEditAngleY">
               <property name="focusPolicy">
                <enum>Qt::StrongFocus</enum>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit_2"/>
+             <widget class="QLineEdit" name="lineEditSpeedY"/>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_4">
@@ -165,7 +165,7 @@
           <item>
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit_3"/>
+             <widget class="QLineEdit" name="lineEditAngleZ"/>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_5">
@@ -182,7 +182,7 @@
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEdit_4"/>
+             <widget class="QLineEdit" name="lineEditSpeedZ"/>
             </item>
            </layout>
           </item>
@@ -366,14 +366,75 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButtonHome">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    color: #eff0f1;
+    background-color: #31363b;
+    border-width: 0px;
+    border-color: #76797C;
+    border-style: solid;
+    padding: 1px;
+    border-radius: 2px;
+    outline: none;
+    font:11px
+}
+
+QPushButton:disabled {
+    background-color: #31363b;
+    border-width: 0px;
+    border-color: #454545;
+    border-style: solid;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 2px;
+    color: #454545;
+}
+
+QPushButton:focus {   
+    color: white;
+}
+
+QPushButton:pressed {   
+    padding-top: -15px;
+    padding-bottom: -17px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resource.qrc">
+         <normaloff>:/icons/home.png</normaloff>:/icons/home.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Home</string>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_2</tabstop>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_4</tabstop>
+  <tabstop>lineEditSpeedY</tabstop>
+  <tabstop>lineEditAngleZ</tabstop>
+  <tabstop>lineEditSpeedZ</tabstop>
   <tabstop>comboBox</tabstop>
   <tabstop>radioButton</tabstop>
   <tabstop>radioButton_2</tabstop>

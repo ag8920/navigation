@@ -63,6 +63,11 @@ MainWindow::MainWindow(QWidget *parent) :
     addThread();
 
     ui->tabWidget->setMovable(true);
+
+
+
+    labelStatusTime=new QLabel;
+    ui->statusBar->addPermanentWidget(labelStatusTime);
 }
 
 MainWindow::~MainWindow()
@@ -206,6 +211,8 @@ void MainWindow::addThread()
             logThread,&QThread::deleteLater);
     logThread->start();
 
+
+
     qDebug()<< QThread::currentThread();
 }
 
@@ -296,6 +303,9 @@ void MainWindow::updateWidget()
         if(data.statusSNS.bits.navigationMode) labelSNSmode->setText(tr("<font color=#439400><b>Navigation<\b><\font>"));
         else labelSNSmode->setText(tr("<b>Wait<\b>"));
     }
+
+    time=QDateTime::currentDateTime();
+    labelStatusTime->setText(time.toString()+"\tUnix: "+QString::number(time.toMSecsSinceEpoch()));
 }
 
 void MainWindow::recordData()

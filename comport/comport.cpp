@@ -29,6 +29,8 @@ comPort::~comPort()
 void comPort::processPort() //выполняется при старте класса
 {
     qDebug("comPort::processPort()");
+    qDebug()<<"comPort threadID : "<<QThread::currentThreadId();
+    qDebug()<<"comPort thread : "<<QThread::currentThread();
     connect(&thisPort,SIGNAL(error(QSerialPort::SerialPortError)),
             this,SLOT(handleError(QSerialPort::SerialPortError)));
     connect(&thisPort,SIGNAL(readyRead()),
@@ -65,18 +67,20 @@ void comPort::ConnectPort(QString name, int baudrate, int DataBits,
         {
             if(thisPort.isOpen())
             {
-                isConnectedPort(tr("Открыт порт: %1, %2, %3, %4, %5, %6")
+                emit isConnectedPort(tr("Открыт порт: %1, %2, %3, %4, %5, %6")
                                 .arg(name).arg(baudrate)
                                 .arg(DataBits).arg(Parity)
                                 .arg(StopBits).arg(FlowControl));
+                emit boolConnectedPort(true);
                 isConnectPort=true;
             }
             else
             {
                 thisPort.close();
                 error_(thisPort.errorString().toLocal8Bit());
-                isNotConnectedPort(tr("Невозможно открыть порт %1").arg(name));
+                emit isNotConnectedPort(tr("Невозможно открыть порт %1").arg(name));
                 isConnectPort=false;
+                emit boolConnectedPort(false);
             }
         }
     }
@@ -84,7 +88,8 @@ void comPort::ConnectPort(QString name, int baudrate, int DataBits,
     {
         thisPort.close();
         error_(thisPort.errorString().toLocal8Bit());
-        isNotConnectedPort(tr("Ошибка открытия порта"));
+        emit isNotConnectedPort(tr("Ошибка открытия порта"));
+        emit boolConnectedPort(false);
         isConnectPort=false;
     }
 }
@@ -98,6 +103,7 @@ bool comPort::DisconnectPort()
     {
         thisPort.close();
         isNotConnectedPort(tr("%1 закрыт").arg(thisPort.portName()));
+        emit boolConnectedPort(false);
         isConnectPort=false;
         return true;
     }
@@ -127,6 +133,7 @@ bool comPort::getIsConnectPort() const
 //-----------------------------------------------------------
 bool comPort::WriteToPort(const QByteArray &data)
 {
+    qDebug()<<"comPort thread : "<<QThread::currentThread();
     if(thisPort.isOpen()){
         thisPort.write(data);
         return true;

@@ -11,12 +11,14 @@ class TablePreseneter : public QObject
     Q_OBJECT
 public:
     explicit TablePreseneter(QObject *parent = nullptr);
+    ~TablePreseneter();
 
 signals:
-
+    //void finished();
 private:
     TableForm *mainForm;
     controlTableGRBL *modelTable;
+    QThread *tableThread;
 
 private:
     void createConnect();    
@@ -26,6 +28,9 @@ public slots:
 
 private:
     bool tableConnect;
+
+private:
+    //void AddThread();
 };
 
 #endif // TABLEMODEL_H

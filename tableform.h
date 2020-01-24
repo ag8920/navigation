@@ -8,6 +8,16 @@
 namespace Ui {
 class TableForm;
 }
+enum typeMove {
+    relativeMove,
+    absoluteMove
+
+};
+enum axisMove{
+    YaxisMove=1,
+    ZaxisMove,
+    YZaxisMove
+};
 
 class TableForm : public QWidget
 {
@@ -22,13 +32,23 @@ signals:
     void ConnectPort(QString name, int baudrate, int DataBits,int Parity,
                      int StropBits,int FlowConrol);
 
+    void pressMoveButton(bool Yaxis, bool Zaxis, bool absoluteMove,
+                         QString speedYaxis, QString speedZaxis,
+                         QString angleYaxis, QString angleZaxis);
 private slots:
     void fillPortsInfo();
     void checkCustomBaudRatePolicy(int idx);
+    void clickedUpButton();
+    void clickedDownButton();
+    void clickedLeftButton();
+    void clickedRightButton();
+    void clickedHomeButton();
+    void setTypeMove();
 
 public slots:
     void clickedConnectButton();
     void ConnectedPort(bool arg1);
+
 
 private:
     Ui::TableForm *ui;
@@ -36,6 +56,23 @@ private:
 
     void fillBaudRateParametres();
     bool isConnectPort;
+
+    QString strAngleYaxis;
+    double dAngleYaxis;
+
+    QString strAngleZaxis;
+    double dAngleZaxis;
+
+    QString strSpeedYaxis;
+    double dSpeedYaxis;
+
+    QString strSpeedZaxis;
+    double dSpeedZaxis;
+
+    typeMove move;
+    axisMove typeAxisMove;
+
+
 
 
 };

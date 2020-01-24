@@ -36,6 +36,7 @@ public:
 
 signals:
     void isConnectedPort(const QString &msg); ///<сигнал успешного подключения порта
+    void boolConnectedPort(bool);
     void isNotConnectedPort(const QString &msg); ///<сигнал неудачного открытия порта
 
     void finishedPort(); ///<сигнал закрытия класса

@@ -176,6 +176,7 @@ private:
    speedwiget *speedwgt;
    QTimer *tmr;
    TablePreseneter *table;
+   QThread *tableThread;
 
    _structAnsK data;
 
@@ -211,6 +212,9 @@ private:
    QLabel *labelVe;
    QLabel *labelVu;
    QLabel *labelVn;
+
+   QDateTime time;
+   QLabel *labelStatusTime;
 
    bool firstpacket;
 

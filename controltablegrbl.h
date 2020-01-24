@@ -8,10 +8,16 @@ class controlTableGRBL:public QObject
 signals:
     void signalSendCommand(const QByteArray &cmd);
     void portConnected(bool);
+    void ConnectPort(QString name,int baudrate,
+                     int DataBits,int Parity,
+                     int StopBits,int FlowControl);
+    void DisconnectPort();
+//    void finished();
 public:
     explicit controlTableGRBL(QObject *parent=nullptr);
     ~controlTableGRBL();
-    comPort *port;
+
+
     bool getConnectPort() const;
 
 public slots:
@@ -20,12 +26,17 @@ public slots:
                   QString speedZaxis="",
                   QString angleYaxis="",
                   QString angleZaxis="");
-    bool ConnectPort(QString name,int baudrate,
-                     int DataBits,int Parity,
-                     int StopBits,int FlowControl);
-    bool DisconnectPort();
+//    bool ConnectPort(QString name,int baudrate,
+//                     int DataBits,int Parity,
+//                     int StopBits,int FlowControl);
+//    bool DisconnectPort();
 private:
+    comPort *port;
+    QThread *ComPortThread;
     bool connectPort;
+
+private:
+    void addThread();
 };
 
 #endif // CONTROLTABLEGRBL_H

@@ -21,11 +21,30 @@ TableForm::TableForm(QWidget *parent) :
             this, &TableForm::fillPortsInfo);
     connect(ui->baudRateBox, SIGNAL(currentIndexChanged(int)),
             this, SLOT(checkCustomBaudRatePolicy(int)));
+
+    connect(ui->pushButtonUp, &QPushButton::clicked,
+            this, &TableForm::clickedUpButton);
+    connect(ui->pushButtonDown, &QPushButton::clicked,
+            this, &TableForm::clickedDownButton);
+    connect(ui->pushButtonLeft, &QPushButton::clicked,
+            this, &TableForm::clickedLeftButton);
+    connect(ui->pushButtonRight, &QPushButton::clicked,
+            this, &TableForm::clickedRightButton);
+    connect(ui->pushButtonHome, &QPushButton::clicked,
+            this, &TableForm::clickedHomeButton);
+
+    connect(ui->radioButton, &QRadioButton::toggled,
+            this, &TableForm::setTypeMove);
+
     fillBaudRateParametres();
     fillPortsInfo();
 
     ui->ButtonConnect->setIcon(QIcon(":/icons/icons/disconnect.png"));
     ui->ButtonUpdateInfo->setIcon(QIcon(":/icons/Refresh.png"));
+
+    ui->radioButton->setChecked(true);
+
+    ui->comboBox->hide();
 
 }
 
@@ -75,6 +94,54 @@ void TableForm::checkCustomBaudRatePolicy(int idx)
         edit->setValidator(intValidator);
     }
 }
+
+void TableForm::clickedUpButton()
+{
+    pressMoveButton(true,false,move,ui->lineEditSpeedY->text(),NULL,
+                    ui->lineEditAngleY->text(),NULL);
+}
+
+void TableForm::clickedDownButton()
+{
+    double AngleY=ui->lineEditAngleY->text().toDouble();
+    AngleY=-AngleY;
+    pressMoveButton(true,false,move,ui->lineEditSpeedY->text(),NULL,
+                    QString::number(AngleY),NULL);
+}
+
+void TableForm::clickedLeftButton()
+{
+    pressMoveButton(false,true,move,NULL,ui->lineEditSpeedZ->text(),
+                    NULL,ui->lineEditAngleZ->text());
+}
+
+void TableForm::clickedRightButton()
+{
+    double AngleZ=ui->lineEditAngleZ->text().toDouble();
+    AngleZ=-AngleZ;
+    pressMoveButton(false,true,move,NULL,ui->lineEditSpeedZ->text(),
+                    NULL,QString::number(AngleZ));
+}
+
+void TableForm::clickedHomeButton()
+{
+    pressMoveButton(true,true,false,"300","300",
+                    "0","0");
+}
+
+void TableForm::setTypeMove()
+{
+
+    if(ui->radioButton->isChecked())
+    {
+        move=relativeMove;
+    }
+    else if(ui->radioButton_2->isChecked())
+    {
+        move=absoluteMove;
+    }
+}
+
 
 void TableForm::clickedConnectButton()
 {
@@ -128,6 +195,8 @@ void TableForm::ConnectedPort(bool arg1)
         ui->pushButtonRight->setEnabled(false);
     }
 }
+
+
 
 
 

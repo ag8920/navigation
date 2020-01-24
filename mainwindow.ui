@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>813</width>
-    <height>624</height>
+    <width>840</width>
+    <height>634</height>
    </rect>
   </property>
   <property name="font">
@@ -652,8 +652,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>813</width>
-     <height>25</height>
+     <width>840</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -700,6 +700,7 @@
    <addaction name="actionSettingsPort"/>
    <addaction name="actionConnect"/>
    <addaction name="actionOutpack"/>
+   <addaction name="actionControlTable"/>
    <addaction name="actionREC"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -747,6 +748,10 @@
    </property>
   </action>
   <action name="actionControlTable">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icons/icons/gyroscope.png</normaloff>:/icons/icons/gyroscope.png</iconset>
+   </property>
    <property name="text">
     <string>управление пов.столом</string>
    </property>

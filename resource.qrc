@@ -46,6 +46,7 @@
         <file>icons/right.png</file>
         <file>icons/down.png</file>
         <file>icons/Refresh.png</file>
+        <file>icons/home.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/alignCenter.png</file>
