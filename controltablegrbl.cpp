@@ -14,9 +14,7 @@ controlTableGRBL::controlTableGRBL(QObject *parent)
 
 controlTableGRBL::~controlTableGRBL()
 {
-
     delete port;
-//    emit finished();
 }
 
 void controlTableGRBL::sendMove(bool Yaxis, bool Zaxis, bool absoluteMove,
@@ -49,26 +47,28 @@ void controlTableGRBL::sendMove(bool Yaxis, bool Zaxis, bool absoluteMove,
 
 }
 
-//bool controlTableGRBL::ConnectPort(QString name, int baudrate, int DataBits, int Parity, int StopBits, int FlowControl)
-//{
-//    port->ConnectPort(name,baudrate,DataBits,Parity,StopBits,FlowControl);
-//    connectPort=port->getIsConnectPort();
-//    //emit portConnected(connectPort);
-//    return connectPort;
-//}
+/*
+bool controlTableGRBL::ConnectPort(QString name, int baudrate, int DataBits, int Parity, int StopBits, int FlowControl)
+{
+    port->ConnectPort(name,baudrate,DataBits,Parity,StopBits,FlowControl);
+    connectPort=port->getIsConnectPort();
+    //emit portConnected(connectPort);
+    return connectPort;
+}
 
-//bool controlTableGRBL::DisconnectPort()
-//{
+bool controlTableGRBL::DisconnectPort()
+{
 
-//    port->DisconnectPort();
-//    connectPort=port->getIsConnectPort();
-//    //emit portConnected(connectPort);
-//    return connectPort;
-//}
+    port->DisconnectPort();
+    connectPort=port->getIsConnectPort();
+    //emit portConnected(connectPort);
+    return connectPort;
+}
+
+*/
 
 void controlTableGRBL::addThread()
 {
-//    qDebug()<<"controlTableGRBL::addThread()";
     ComPortThread = new QThread;
     port->moveToThread(ComPortThread);
     port->thisPort.moveToThread(ComPortThread);
@@ -81,7 +81,6 @@ void controlTableGRBL::addThread()
     connect(port,&comPort::finishedPort,
             ComPortThread,&QThread::deleteLater);
     ComPortThread->start(QThread::TimeCriticalPriority);
-//    port->processPort();
 }
 
 bool controlTableGRBL::getConnectPort() const

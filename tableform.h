@@ -4,6 +4,7 @@
 #include "comport/portsettings/settingsportdialog.h"
 #include <QWidget>
 #include <QStatusBar>
+#include "gridbuttons/buttongrid.h"
 
 namespace Ui {
 class TableForm;
@@ -72,7 +73,7 @@ private:
     typeMove move;
     axisMove typeAxisMove;
 
-
+    buttonGrid *gridButtons;
 
 
 };

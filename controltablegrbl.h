@@ -26,10 +26,12 @@ public slots:
                   QString speedZaxis="",
                   QString angleYaxis="",
                   QString angleZaxis="");
-//    bool ConnectPort(QString name,int baudrate,
-//                     int DataBits,int Parity,
-//                     int StopBits,int FlowControl);
-//    bool DisconnectPort();
+/*
+    bool ConnectPort(QString name,int baudrate,
+                     int DataBits,int Parity,
+                     int StopBits,int FlowControl);
+    bool DisconnectPort();
+*/
 private:
     comPort *port;
     QThread *ComPortThread;

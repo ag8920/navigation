@@ -5,15 +5,21 @@
 #include <QIntValidator>
 #include <QLineEdit>
 #include <QString>
-
 #include <QDebug>
 
 TableForm::TableForm(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::TableForm)
+    ui(new Ui::TableForm),
+    isConnectPort(false)
 {
     ui->setupUi(this);
     PortSettingsDialog *settingPort = new PortSettingsDialog();
+    gridButtons = new buttonGrid("Z","Y");
+
+    QGridLayout *tab2Layout = new QGridLayout();
+    tab2Layout->addWidget(gridButtons);
+    ui->tab_2->setLayout(tab2Layout);
+    connect(gridButtons, &buttonGrid::pressButton,this, &TableForm::pressMoveButton );
 
     connect(ui->ButtonConnect, &QPushButton::clicked,
             this,&TableForm::clickedConnectButton);
@@ -45,6 +51,8 @@ TableForm::TableForm(QWidget *parent) :
     ui->radioButton->setChecked(true);
 
     ui->comboBox->hide();
+
+    ui->tabWidget->setCurrentIndex(0);
 
 }
 
@@ -97,35 +105,47 @@ void TableForm::checkCustomBaudRatePolicy(int idx)
 
 void TableForm::clickedUpButton()
 {
+    if (ui->lineEditAngleY->text().isEmpty() || ui->lineEditSpeedY->text().isEmpty() )
+        return;
     pressMoveButton(true,false,move,ui->lineEditSpeedY->text(),NULL,
                     ui->lineEditAngleY->text(),NULL);
 }
 
 void TableForm::clickedDownButton()
 {
+    if (ui->lineEditAngleY->text().isEmpty() || ui->lineEditSpeedY->text().isEmpty() )
+        return;
     double AngleY=ui->lineEditAngleY->text().toDouble();
     AngleY=-AngleY;
-    pressMoveButton(true,false,move,ui->lineEditSpeedY->text(),NULL,
+    pressMoveButton(true,false,move,
+                    ui->lineEditSpeedY->text(),
+                    NULL,
                     QString::number(AngleY),NULL);
 }
 
 void TableForm::clickedLeftButton()
 {
-    pressMoveButton(false,true,move,NULL,ui->lineEditSpeedZ->text(),
+    if(ui->lineEditSpeedZ->text().isEmpty() || ui->lineEditAngleZ->text().isEmpty())
+        return;
+    pressMoveButton(false,true,move,NULL,
+                    ui->lineEditSpeedZ->text(),
                     NULL,ui->lineEditAngleZ->text());
 }
 
 void TableForm::clickedRightButton()
 {
+    if(ui->lineEditAngleZ->text().isEmpty() ||ui->lineEditSpeedZ->text().isEmpty())
+        return;
     double AngleZ=ui->lineEditAngleZ->text().toDouble();
     AngleZ=-AngleZ;
-    pressMoveButton(false,true,move,NULL,ui->lineEditSpeedZ->text(),
+    pressMoveButton(false,true,move,NULL,
+                    ui->lineEditSpeedZ->text(),
                     NULL,QString::number(AngleZ));
 }
 
 void TableForm::clickedHomeButton()
 {
-    pressMoveButton(true,true,false,"300","300",
+    pressMoveButton(true,true,true,"300","300",
                     "0","0");
 }
 
@@ -146,22 +166,25 @@ void TableForm::setTypeMove()
 void TableForm::clickedConnectButton()
 {
     if(!isConnectPort){
-    QString name=ui->serialPortInfoBox->currentText();
-    int baud;
-    if (ui->baudRateBox->currentIndex() == 9) {
-        baud = ui->baudRateBox->currentText().toInt();
-    } else {
-        baud =/* static_cast<QSerialPort::BaudRate>*/(
-            ui->baudRateBox->itemData(ui->baudRateBox->currentIndex()).toInt());
+        QString name=ui->serialPortInfoBox->currentText();
+        int baud;
+        if (ui->baudRateBox->currentIndex() == 9) {
+            baud = ui->baudRateBox->currentText().toInt();
+        } else {
+            baud =/* static_cast<QSerialPort::BaudRate>*/(
+                ui->baudRateBox->itemData(ui->baudRateBox->currentIndex()).toInt());
+        }
+        emit ConnectPort(name,baud,
+                    QSerialPort::Data8,
+                    QSerialPort::NoParity,
+                    QSerialPort::OneStop,
+                    QSerialPort::NoFlowControl);
+        qDebug()<<"TableForm::clickedConnectButton():: connected";
     }
-    emit ConnectPort(name,baud,
-                QSerialPort::Data8,
-                QSerialPort::NoParity,
-                QSerialPort::OneStop,
-                QSerialPort::NoFlowControl);
-    }
-    else
+    else{
         emit disconnectPort();
+        qDebug()<<"TableForm::clickedConnectButton():: disconnected";
+    }
 }
 
 void TableForm::ConnectedPort(bool arg1)

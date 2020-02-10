@@ -193,16 +193,9 @@ void MainWindow::createConnect()
 
 void MainWindow::addThread()
 {
-//    udp->moveToThread(udpThread);
-//    connect(udpThread,&QThread::started,
-//            udp,&udpDrv::process);
-//    connect(udp,&udpDrv::finished,
-//            udpThread,&QThread::quit);
-//    udpThread->start();
+
 
     log->moveToThread(logThread);
-    //    connect(logThread,&QThread::started,
-    //            log,&loger::start);
     connect(log,&loger::finished,
             logThread,&QThread::quit);
     connect(logThread,&QThread::finished,

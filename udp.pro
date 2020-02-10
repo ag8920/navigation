@@ -43,6 +43,8 @@ UI_DIR=ui
 OBJECTS_DIR=obj
 
 SOURCES += \
+        gridbuttons/buttongrid.cpp \
+        gridbuttons/mbutton.cpp \
         settginsDialog/settingsdialog.cpp \
         comport/comport.cpp \
         comport/portsettings/settingsportdialog.cpp \
@@ -64,6 +66,8 @@ SOURCES += \
         udpdrv.cpp
 
 HEADERS += \
+        gridbuttons/buttongrid.h \
+        gridbuttons/mbutton.h \
         settginsDialog/settingsdialog.h \
         comport/comport.h \
         comport/portsettings/settingsportdialog.h \
