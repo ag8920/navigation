@@ -69,6 +69,9 @@ private slots:
 
     void on_btnMove_clicked();
 
+
+    void on_btnAlign_clicked();
+
 public slots:
     void clickedConnectButton();
     void ConnectedPort(bool arg1);

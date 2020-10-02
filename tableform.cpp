@@ -293,3 +293,10 @@ void TableForm::on_btnMove_clicked()
 {
     pressMoveButton(true, true,true,true,ui->speedlineEdit->text(),ui->xlineEdit->text(),ui->ylineEdit->text(),ui->zlineEdit->text());
 }
+
+
+void TableForm::on_btnAlign_clicked()
+{
+    pressMoveButton(true, true, true,false,"200","1","1","1");
+    pressMoveButton(true, true, true,false,"50","-1","-1","-1");
+}
