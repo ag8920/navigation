@@ -277,7 +277,7 @@ QLineEdit {
     border: 1px solid #76797C;
     border-radius: 2px;
     color: #eff0f1;
-    font:11px
+    font:14px
 }
 
 QAbstractItemView QLineEdit {
@@ -525,7 +525,7 @@ QPushButton {
     padding: 1px;
     border-radius: 2px;
     outline: none;
-    font:11px
+    font:14px
 }
 
 QPushButton:disabled {

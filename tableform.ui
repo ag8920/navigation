@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>449</width>
-    <height>359</height>
+    <width>558</width>
+    <height>458</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -21,8 +21,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>449</width>
-    <height>353</height>
+    <width>558</width>
+    <height>458</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -90,15 +90,240 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabWidget">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="movable">
       <bool>true</bool>
      </property>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Движения</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="title">
+          <string>Ввод значений</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Delta</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Z</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>X</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Y</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Скорость</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="deltalineEdit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="speedlineEdit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="xlineEdit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="ylineEdit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="zlineEdit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
+          <string>Команды</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="2" column="0">
+           <widget class="QPushButton" name="btnYplus">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Y+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="btnXplus">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>X+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QPushButton" name="btnZplus">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Z+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="btnXminus">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>X-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="btnYminus">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Y-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QPushButton" name="btnZminus">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Z-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QPushButton" name="btnHome">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>&quot;Домой&quot;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QPushButton" name="btnMove">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>&quot;Взглянуть&quot;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Положения</string>
+      </attribute>
+     </widget>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Вращение</string>
+       <string>Пульт</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
@@ -443,11 +668,6 @@ QPushButton:pressed {
         </spacer>
        </item>
       </layout>
-     </widget>
-     <widget class="QWidget" name="tab_2">
-      <attribute name="title">
-       <string>Координаты</string>
-      </attribute>
      </widget>
     </widget>
    </item>

@@ -489,7 +489,6 @@ QString MainWindow::deg2String(double deg)
         dec_min-=60;
     }
 
-//    return (tr("%1°%2′%3″").arg(degree).arg(fabs(minute)).arg(QString::number(fabs(second),'g',2)));
     return (tr("%1°%2′%3″").arg(dec_deg).arg(dec_min).arg(dec_sec));
 }
 

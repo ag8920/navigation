@@ -17,30 +17,28 @@ controlTableGRBL::~controlTableGRBL()
     delete port;
 }
 
-void controlTableGRBL::sendMove(bool Yaxis, bool Zaxis, bool absoluteMove,
-                                QString speedYaxis, QString speedZaxis,
-                                QString angleYaxis, QString angleZaxis)
+void controlTableGRBL::sendMove(bool Xaxis,
+                                bool Yaxis,
+                                bool Zaxis,
+                                bool absoluteMove,
+                                QString speed,
+                                QString angleXaxis,
+                                QString angleYaxis,
+                                QString angleZaxis)
 {
     qDebug()<<"Model Table thread : "<< QThread::currentThread();
     QString typeMove=NULL;
     QString sendStr=NULL;
 
     if(absoluteMove)
-        typeMove="G53";
+        typeMove="G53 G01";
     else typeMove="G91 G01";
 
-    if(Yaxis && Zaxis)
-    {
-        sendStr=typeMove+" Y"+angleYaxis+" Z"+angleZaxis+" F"+speedZaxis+0x0a+0x0d;
-    }
-    else if(Yaxis)
-    {
-        sendStr=typeMove+" Y"+angleYaxis+" F"+speedYaxis+0x0a+0x0d;
-    }
-    else if(Zaxis)
-    {
-        sendStr=typeMove+" Z"+angleZaxis+" F"+speedZaxis+0x0a+0x0d;
-    }
+    sendStr=typeMove;
+    if(Xaxis) sendStr+= " X"+angleXaxis;
+    if(Yaxis) sendStr+= " Y"+angleYaxis;
+    if(Zaxis) sendStr+= " Z"+angleZaxis;
+    sendStr+= " F"+speed+0x0a+0x0d;
 
     if(!sendStr.isEmpty())
         emit signalSendCommand(sendStr.toLocal8Bit());

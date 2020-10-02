@@ -5,6 +5,7 @@
 #include <QDoubleValidator>
 #include <QSpacerItem>
 #include <QLabel>
+#include <QGroupBox>
 
 buttonGrid::buttonGrid(const QString &xAxisName,const  QString &yAxisName, QWidget *parent)
     : QWidget(parent)
@@ -22,8 +23,34 @@ buttonGrid::buttonGrid(const QString &xAxisName,const  QString &yAxisName, QWidg
     speedLineEdit = new LineEdit();
     speedLineEdit->setValidator(dblv);
     QHBoxLayout *leLayout = new QHBoxLayout;
+    QHBoxLayout *btnZLayout = new QHBoxLayout;
+    QVBoxLayout *XYLayout = new QVBoxLayout;
     QVBoxLayout *mainLayout = new QVBoxLayout;
+    QGroupBox *gbxXY = new QGroupBox(tr("Положение X-Y"));
+    QGroupBox *gbxZ = new QGroupBox(tr("Положение Z"));
 
+    ZangleLineEdit = new LineEdit();    
+    ZangleLineEdit->setValidator(dblv);
+    btnZplus = new QPushButton("Z+");
+    btnZplus->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Fixed);
+    btnZminus = new QPushButton("Z-");
+    btnZminus->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Fixed);
+    btnZnull = new QPushButton("Z0");
+    btnZnull->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Fixed);
+
+
+    btnZLayout->addWidget(new QLabel(tr("Угол Z:")));
+    btnZLayout->addWidget(ZangleLineEdit);
+    btnZLayout->addWidget(btnZplus,1);    
+    btnZLayout->addWidget(btnZnull,1);
+    btnZLayout->addWidget(btnZminus,1);
+    btnZLayout->addStretch();
+
+
+
+//    leLayout->addStretch();
+//    leLayout->addWidget(new QLabel(tr("угол Z:")));
+//    leLayout->addWidget(ZangleLineEdit);
     leLayout->addStretch();
     leLayout->addWidget(new QLabel(tr("Угол:")));
     leLayout->addWidget(angleLineEdit);
@@ -31,17 +58,32 @@ buttonGrid::buttonGrid(const QString &xAxisName,const  QString &yAxisName, QWidg
     leLayout->addWidget(new QLabel(tr("Скорость:")));
     leLayout->addWidget(speedLineEdit);
     leLayout->addStretch();
-    mainLayout->addLayout(buttonGridLayout);
-    mainLayout->addLayout(leLayout);
+
+    XYLayout->addLayout(buttonGridLayout);
+    XYLayout->addLayout(leLayout);
+    gbxXY->setLayout(XYLayout);
+
+    gbxZ->setLayout(btnZLayout);
+
+//    mainLayout->addLayout(buttonGridLayout);
+//    mainLayout->addLayout(leLayout);
+//    mainLayout->addLayout(btnZLayout);
+    mainLayout->addWidget(gbxXY);
+    mainLayout->addWidget(gbxZ);
+
+
 
     connect(angleLineEdit, &LineEdit::textChanged,
             this, &buttonGrid::inputAngle);
     connect(speedLineEdit, &LineEdit::textChanged,
             this, &buttonGrid::inputSeed);
 
-//    connect(this,&buttonGrid::pressButton,this,&buttonGrid::testpressButton);
+    connect(btnZplus,&QPushButton::clicked,this, &buttonGrid::clickedBtnZplus);
+    connect(btnZminus,&QPushButton::clicked,this, &buttonGrid::clickedBtnZminus);
+    connect(btnZnull,&QPushButton::clicked,this, &buttonGrid::clickedBtnZnull);
 
     setLayout(mainLayout);
+    this->resize(sizeHint());
 
 }
 
@@ -54,10 +96,15 @@ void buttonGrid::buttonClicked()
     Button *clickedButton = qobject_cast<Button *>(sender());
     double x=clickedButton->getXAxis();
     double y=clickedButton->getYAxis();
-//    qDebug()<<x<<" : "<<y;
-    emit pressButton(true, true, true,
-                QString::number(speed), QString::number(speed),
-                QString::number(y), QString::number(x));
+
+    emit pressButton(true, //X
+                     true, //Y
+                     false, //Z
+                     true, //move
+                     QString::number(speed), //speed
+                     QString::number(x),//angle X
+                     QString::number(y),//angle Y
+                     NULL); //angle Z
 }
 
 void buttonGrid::inputAngle(const QString &text)
@@ -68,14 +115,49 @@ void buttonGrid::inputAngle(const QString &text)
 void buttonGrid::inputSeed(const QString &text)
 {
     setSpeed(text.toDouble());
-//    qDebug()<<getSpeed();
 }
 
-void buttonGrid::testpressButton(bool Yaxis, bool Zaxis, bool absoluteMove,
+void buttonGrid::testpressButton(bool Xaxis, bool Yaxis, bool Zaxis, bool absoluteMove,
                                  QString speedYaxis, QString speedXaxis,
                                  QString angleYaxis, QString angleXaxis)
 {
     qDebug()<<Yaxis<<Zaxis<<absoluteMove<<speedYaxis<<speedXaxis<<angleYaxis<<angleXaxis;
+}
+
+void buttonGrid::clickedBtnZplus()
+{
+    pressButton(false,
+                false,
+                true,
+                false,
+                QString::number(speed),
+                NULL,
+                NULL,
+                ZangleLineEdit->text());
+}
+
+void buttonGrid::clickedBtnZminus()
+{
+    pressButton(false,
+                false,
+                true,
+                false,
+                QString::number(speed),
+                NULL,
+                NULL,
+                "-"+ZangleLineEdit->text());
+}
+
+void buttonGrid::clickedBtnZnull()
+{
+    pressButton(false,
+                false,
+                true,
+                true,
+                QString::number(speed),
+                NULL,
+                NULL,
+                "0");
 }
 
 Button *buttonGrid::createButton(const QString &text, const char *member)
@@ -124,9 +206,6 @@ QGridLayout *buttonGrid::createGridButton(int colTable,int rowTable,int countBut
         int row = ((countButtons - i) / rowTable) + 3;
         int column = ((i - 1) % colTable) + 2;
         Layout->addWidget(angleButtons[i-1],row,column);
-        //qDebug()<<row<<" "<<column;
-
-
     }
     return  Layout;
 }

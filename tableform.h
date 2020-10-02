@@ -33,9 +33,14 @@ signals:
     void ConnectPort(QString name, int baudrate, int DataBits,int Parity,
                      int StropBits,int FlowConrol);
 
-    void pressMoveButton(bool Yaxis, bool Zaxis, bool absoluteMove,
-                         QString speedYaxis, QString speedZaxis,
-                         QString angleYaxis, QString angleZaxis);
+    void pressMoveButton(bool Xaxis,
+                         bool Yaxis,
+                         bool Zaxis,
+                         bool absoluteMove,
+                         QString speed,
+                         QString angleXaxis,
+                         QString angleYaxis,
+                         QString angleZaxis);
 private slots:
     void fillPortsInfo();
     void checkCustomBaudRatePolicy(int idx);
@@ -45,6 +50,24 @@ private slots:
     void clickedRightButton();
     void clickedHomeButton();
     void setTypeMove();
+
+
+
+    void on_btnXplus_clicked();
+
+    void on_btnXminus_clicked();
+
+    void on_btnYplus_clicked();
+
+    void on_btnYminus_clicked();
+
+    void on_btnZplus_clicked();
+
+    void on_btnZminus_clicked();
+
+    void on_btnHome_clicked();
+
+    void on_btnMove_clicked();
 
 public slots:
     void clickedConnectButton();

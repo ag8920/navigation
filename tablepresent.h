@@ -11,10 +11,6 @@ class TablePreseneter : public QObject
     Q_OBJECT
 public:
     explicit TablePreseneter(QObject *parent = nullptr);
-    ~TablePreseneter();
-
-signals:
-    //void finished();
 private:
     TableForm *mainForm;
     controlTableGRBL *modelTable;

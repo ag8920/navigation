@@ -21,9 +21,12 @@ public:
     bool getConnectPort() const;
 
 public slots:
-    void sendMove(bool Yaxis=false,bool Zaxis=false, bool absoluteMove=false,
-                  QString speedYaxis="",
-                  QString speedZaxis="",
+    void sendMove(bool Xaxis=false,
+                  bool Yaxis=false,
+                  bool Zaxis=false,
+                  bool absoluteMove=false,
+                  QString speed="",
+                  QString angleXaxis="",
                   QString angleYaxis="",
                   QString angleZaxis="");
 /*

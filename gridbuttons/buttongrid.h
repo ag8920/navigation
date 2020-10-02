@@ -26,18 +26,26 @@ public:
     double getSpeed() const;
     void setSpeed(double value);
 signals:
-    void pressButton(bool Yaxis, bool Xaxis, bool absoluteMove,
-                         QString speedYaxis, QString speedXaxis,
-                         QString angleYaxis, QString angleXaxis);
+    void pressButton(bool Xaxis,
+                     bool Yaxis,
+                     bool Zaxis,
+                     bool absoluteMove,
+                     QString speed,
+                     QString angleXaxis,
+                     QString angleYaxis,
+                     QString angleZaxis);
 private slots:
     void buttonClicked();
     void inputAngle(const QString &text);
     void inputSeed(const QString &text);
 
-    void testpressButton(bool Yaxis, bool Zaxis, bool absoluteMove,
+    void testpressButton(bool Xaxis, bool Yaxis, bool Zaxis, bool absoluteMove,
                           QString speedYaxis, QString speedZaxis,
                           QString angleYaxis, QString angleZaxis);
 
+    void clickedBtnZplus();
+    void clickedBtnZminus();
+    void clickedBtnZnull();
 private:
     Button *createButton(const QString &text, const char *member);
      void createButtons(int count);
@@ -48,6 +56,11 @@ private:
     LineEdit *angleLineEdit;
     LineEdit *speedLineEdit;
     Button *angleButtons[COUNTBUTTONS];
+
+    LineEdit *ZangleLineEdit;
+    QPushButton *btnZplus;
+    QPushButton *btnZminus;
+    QPushButton *btnZnull;
     double speed;
     QString xAxisName;
     QString yAxisName;

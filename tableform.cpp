@@ -6,6 +6,7 @@
 #include <QLineEdit>
 #include <QString>
 #include <QDebug>
+#include <QDoubleValidator>
 
 TableForm::TableForm(QWidget *parent) :
     QWidget(parent),
@@ -14,7 +15,7 @@ TableForm::TableForm(QWidget *parent) :
 {
     ui->setupUi(this);
     PortSettingsDialog *settingPort = new PortSettingsDialog();
-    gridButtons = new buttonGrid("Z","Y");
+    gridButtons = new buttonGrid("X","Y");
 
     QGridLayout *tab2Layout = new QGridLayout();
     tab2Layout->addWidget(gridButtons);
@@ -53,6 +54,15 @@ TableForm::TableForm(QWidget *parent) :
     ui->comboBox->hide();
 
     ui->tabWidget->setCurrentIndex(0);
+    ui->tabWidget->removeTab(2);//закладка
+
+    QDoubleValidator *dblv=new QDoubleValidator;
+    dblv->setLocale(QLocale::English);
+    ui->xlineEdit->setValidator(dblv);
+    ui->ylineEdit->setValidator(dblv);
+    ui->zlineEdit->setValidator(dblv);
+    ui->speedlineEdit->setValidator(dblv);
+    ui->deltalineEdit->setValidator(dblv);
 
 }
 
@@ -107,8 +117,13 @@ void TableForm::clickedUpButton()
 {
     if (ui->lineEditAngleY->text().isEmpty() || ui->lineEditSpeedY->text().isEmpty() )
         return;
-    pressMoveButton(true,false,move,ui->lineEditSpeedY->text(),NULL,
-                    ui->lineEditAngleY->text(),NULL);
+    pressMoveButton(true,
+                    false,
+                    false,
+                    move,ui->lineEditSpeedY->text(),
+                    NULL,
+                    ui->lineEditAngleY->text(),
+                    NULL);
 }
 
 void TableForm::clickedDownButton()
@@ -117,19 +132,28 @@ void TableForm::clickedDownButton()
         return;
     double AngleY=ui->lineEditAngleY->text().toDouble();
     AngleY=-AngleY;
-    pressMoveButton(true,false,move,
+    pressMoveButton(true,
+                    false,
+                    false,
+                    move,
                     ui->lineEditSpeedY->text(),
                     NULL,
-                    QString::number(AngleY),NULL);
+                    QString::number(AngleY),
+                    NULL);
 }
 
 void TableForm::clickedLeftButton()
 {
     if(ui->lineEditSpeedZ->text().isEmpty() || ui->lineEditAngleZ->text().isEmpty())
         return;
-    pressMoveButton(false,true,move,NULL,
+    pressMoveButton(false,
+                    false,
+                    true,
+                    move,
+                    NULL,
                     ui->lineEditSpeedZ->text(),
-                    NULL,ui->lineEditAngleZ->text());
+                    NULL,
+                    ui->lineEditAngleZ->text());
 }
 
 void TableForm::clickedRightButton()
@@ -138,14 +162,14 @@ void TableForm::clickedRightButton()
         return;
     double AngleZ=ui->lineEditAngleZ->text().toDouble();
     AngleZ=-AngleZ;
-    pressMoveButton(false,true,move,NULL,
+    pressMoveButton(false,false,true,move,NULL,
                     ui->lineEditSpeedZ->text(),
                     NULL,QString::number(AngleZ));
 }
 
 void TableForm::clickedHomeButton()
 {
-    pressMoveButton(true,true,true,"300","300",
+    pressMoveButton(true,true,false,true,"300","300",
                     "0","0");
 }
 
@@ -229,3 +253,43 @@ void TableForm::ConnectedPort(bool arg1)
 
 
 
+
+void TableForm::on_btnXplus_clicked()
+{
+    pressMoveButton(true, false,false,false,ui->speedlineEdit->text(),ui->deltalineEdit->text(),NULL,NULL);
+}
+
+void TableForm::on_btnXminus_clicked()
+{
+    pressMoveButton(true, false,false,false,ui->speedlineEdit->text(),"-"+ui->deltalineEdit->text(),NULL,NULL);
+}
+
+void TableForm::on_btnYplus_clicked()
+{
+    pressMoveButton(false, true,false,false,ui->speedlineEdit->text(),NULL,ui->deltalineEdit->text(),NULL);
+}
+
+void TableForm::on_btnYminus_clicked()
+{
+    pressMoveButton(false, true,false,false,ui->speedlineEdit->text(),NULL,"-"+ui->deltalineEdit->text(),NULL);
+}
+
+void TableForm::on_btnZplus_clicked()
+{
+    pressMoveButton(false, false,true,false,ui->speedlineEdit->text(),NULL,NULL,ui->deltalineEdit->text());
+}
+
+void TableForm::on_btnZminus_clicked()
+{
+    pressMoveButton(false, false,true,false,ui->speedlineEdit->text(),NULL,NULL,"-"+ui->deltalineEdit->text());
+}
+
+void TableForm::on_btnHome_clicked()
+{
+    pressMoveButton(true, true,true,true,ui->speedlineEdit->text(),"0","0","0");
+}
+
+void TableForm::on_btnMove_clicked()
+{
+    pressMoveButton(true, true,true,true,ui->speedlineEdit->text(),ui->xlineEdit->text(),ui->ylineEdit->text(),ui->zlineEdit->text());
+}

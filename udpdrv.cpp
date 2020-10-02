@@ -20,6 +20,8 @@ void udpDrv::process()
 void udpDrv::initSocket(QString ipReciev,QString ipSend,quint16 port)
 {
 
+    qDebug()<<"ipSender="<<ipSend;
+    qDebug()<<"ipReciever="<<ipReciev;
     udpSocket = new QUdpSocket;
 
     setIpAddrReceiver(QHostAddress(ipReciev));
@@ -27,9 +29,9 @@ void udpDrv::initSocket(QString ipReciev,QString ipSend,quint16 port)
     setPort(port);
 
     if(udpSocket->bind(getIpAddrReceiver(),getPort()))
-        qDebug()<<"true";
+        qDebug()<<"socket bind = true";
     else
-        qDebug()<<"false";
+        qDebug()<<"socket bins = false";
     connect(udpSocket,&QUdpSocket::readyRead,this,&udpDrv::ReadInSocket);
 }
 
